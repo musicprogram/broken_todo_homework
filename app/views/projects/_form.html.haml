@@ -1,0 +1,16 @@
+= form_for(@project) do |f|
+  - if @project.errors.any?
+    #error_explanation.notification
+      %div
+        - @project.errors.full_messages.each do |msg|
+          %p.text-danger= msg
+  %div
+    = f.label :title
+    %br
+    = f.text_field :title, size: '80', class: 'input-custom'
+    - if @project.discarded?
+      %div
+        = check_box_tag :restore
+        Restore Deleted Record
+  %div
+    = f.submit 'Create project', class: 'btn-custom'

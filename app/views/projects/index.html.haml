@@ -1,0 +1,11 @@
+%h2 PROJECTS
+%div{:class => 'notification'}
+  = flash[:notice]
+%ul{:class => 'list-g'}
+  - if @projects.empty?
+    %li{ class: "list-g-item no-item" }  No projects.
+  - @projects.each do |project|
+    = render partial: 'projects/project', locals: { project: project }
+
+
+= link_to 'New Project', new_project_path, class: 'btn-custom btn-add'

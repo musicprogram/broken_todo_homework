@@ -1,0 +1,6 @@
+%h2.text-cap
+  = link_to @project.title, edit_project_path(@project)
+
+= render partial: 'items/index', locals: { project: @project }
+%br
+= link_to 'Back', projects_path

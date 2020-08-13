@@ -1,0 +1,15 @@
+%h2 New Item
+= form_for([@project, @item]) do |f|
+  - if @item.errors.any?
+    #error_explanation.notification
+      %div
+        - @item.errors.full_messages.each do |msg|
+          %p.text-danger= msg
+  .field
+    = f.label :action
+    %br/
+    = f.text_field :action, size: '80', class: 'input-custom'
+  .actions
+    = f.submit 'Create Item', class: 'btn-custom'
+%br
+= link_to 'Back', project_path(@project)

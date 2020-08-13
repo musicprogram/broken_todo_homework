@@ -1,0 +1,11 @@
+%div{:class => 'notification'}
+  = flash[:notice]
+
+%ul{:class => 'list-g'}
+  - if @project.items.empty?
+    %li{ class: "list-g-item no-item" } No items.
+  - @project.items.each do |item|
+    = render partial: 'items/item', locals: { item: item }
+  %div
+    = link_to 'New Item', new_project_item_path(project), class: 'btn-custom f-left'
+    = link_to 'Clear Completed Items', clear_project_path(project), method: :delete, id: 'clearer', class: 'btn-custom-danger f-right'

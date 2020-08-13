@@ -1,0 +1,20 @@
+%h2 Edit Item
+= form_for([@project, @item], :url => { :action => :update }) do |f|
+  - if @item.errors.any?
+    #error_explanation.notification
+      %div
+        - @item.errors.full_messages.each do |msg|
+          %p.text-danger= msg
+  .field
+    = f.label :action
+    %br
+    = f.text_field :action, size: '80', class: 'input-custom'
+  .field
+    = f.label :done, 'Done?'
+    = f.check_box :done
+  - if @item.discarded?
+    %div
+      = check_box_tag :restore
+      Restore Deleted Record
+  .actions
+    = f.submit 'Update item', class: 'btn-custom'

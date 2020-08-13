@@ -1,0 +1,9 @@
+-msgconfirm = project.discarded? ? "are you sure? you will permanently delete the record": "Are you sure?"
+%li{:class => "list-g-item #{project.discarded? ? 'done' : 'not-done'}"}
+  = link_to project_path(project), class: 'text-cap btn-list' do
+    = project.title
+  -if project.discarded?
+    = link_to 'edit', edit_project_path(project), class: 'btn-edit'
+  %span
+    = link_to project, method: :delete, data: { confirm:  msgconfirm }, class: 'btn-custom-danger' do
+      -project.discarded? ? 'Destroy <span>&#9888;</span>' : 'Destroy'

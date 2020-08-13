@@ -1,0 +1,9 @@
+%li{ class: "list-g-item #{item.done? ? 'done' : 'not-done'}" }
+  = link_to edit_project_item_path(@project, item), class: 'btn-list text-cap' do
+    = item.action
+    -if item.discarded?
+      <span class="btn-edit">&#9888;</span>
+  -if item.discarded?
+    = link_to 'Edit' ,edit_project_item_path(@project, item), class: 'btn-edit'
+  - unless item.done?
+    = button_to 'Done' ,{ controller: :items, action: :update, id: item.id, project_id: @project.id, item: { done: true } }, { method: :patch, class: 'btn-right btn-custom' }
